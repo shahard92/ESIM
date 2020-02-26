@@ -9,7 +9,6 @@ import pickle
 import torch
 import json
 
-import matplotlib.pyplot as plt
 import torch.nn as nn
 
 from torch.utils.data import DataLoader
@@ -217,19 +216,6 @@ def main(train_file,
         if patience_counter >= patience:
             print("-> Early stopping: patience limit reached, stopping...")
             break
-
-    # Plotting of the loss curves for the train and validation sets.
-    plt.figure()
-    plt.plot(epochs_count, train_losses, "-r")
-    plt.plot(epochs_count, matched_valid_losses, "-b")
-    plt.plot(epochs_count, mismatched_valid_losses, "-g")
-    plt.xlabel("epoch")
-    plt.ylabel("loss")
-    plt.legend(["Training loss",
-                "Validation loss (matched set)",
-                "Validation loss (mismatched set)"])
-    plt.title("Cross entropy loss")
-    plt.show()
 
 
 if __name__ == "__main__":

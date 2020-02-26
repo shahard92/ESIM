@@ -46,7 +46,8 @@ def test(model, dataloader):
             hypotheses = batch["hypothesis"].to(device)
             hypotheses_lengths = batch["hypothesis_length"].to(device)
             labels = batch["label"].to(device)
-
+            
+            
             _, probs = model(premises,
                              premises_lengths,
                              hypotheses,
@@ -90,6 +91,10 @@ def main(test_file, pretrained_file, batch_size=32):
     embedding_dim = checkpoint["model"]['_word_embedding.weight'].size(1)
     hidden_size = checkpoint["model"]["_projection.0.weight"].size(0)
     num_classes = checkpoint["model"]["_classification.4.weight"].size(0)
+    
+    print("vocab_size:", vocab_size)
+    print("embedding dim:", embedding_dim)
+    print("hidden size:", hidden_size)
 
     print("\t* Loading test data...")
     with open(test_file, "rb") as pkl:

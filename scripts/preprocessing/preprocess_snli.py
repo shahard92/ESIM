@@ -76,7 +76,7 @@ def preprocess_SNLI_data(inputdir,
 
     print(20*"=", " Preprocessing train set ", 20*"=")
     print("\t* Reading data...")
-    data = preprocessor.read_data(os.path.join(inputdir, train_file))
+    data = preprocessor.read_data(os.path.join(inputdir, train_file), mode="train")
 
     print("\t* Computing worddict and saving it...")
     preprocessor.build_worddict(data)
@@ -92,7 +92,7 @@ def preprocess_SNLI_data(inputdir,
     # -------------------- Validation data preprocessing -------------------- #
     print(20*"=", " Preprocessing dev set ", 20*"=")
     print("\t* Reading data...")
-    data = preprocessor.read_data(os.path.join(inputdir, dev_file))
+    data = preprocessor.read_data(os.path.join(inputdir, dev_file), mode="dev")
 
     print("\t* Transforming words in premises and hypotheses to indices...")
     transformed_data = preprocessor.transform_to_indices(data)
@@ -103,7 +103,7 @@ def preprocess_SNLI_data(inputdir,
     # -------------------- Test data preprocessing -------------------- #
     print(20*"=", " Preprocessing test set ", 20*"=")
     print("\t* Reading data...")
-    data = preprocessor.read_data(os.path.join(inputdir, test_file))
+    data = preprocessor.read_data(os.path.join(inputdir, test_file), mode="test")
 
     print("\t* Transforming words in premises and hypotheses to indices...")
     transformed_data = preprocessor.transform_to_indices(data)

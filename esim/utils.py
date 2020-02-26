@@ -36,9 +36,16 @@ def sort_by_seq_lens(batch, sequences_lengths, descending=True):
         sequences_lengths.sort(0, descending=descending)
 
     sorted_batch = batch.index_select(0, sorting_index)
+    
+    #print("sequences_lengths:", sequences_lengths)
 
+#    idx_range =\
+#        sequences_lengths.new_tensor(torch.arange(0, len(sequences_lengths)))
+#    print("idx_range:", idx_range)
     idx_range =\
-        sequences_lengths.new_tensor(torch.arange(0, len(sequences_lengths)))
+        sequences_lengths.clone().detach()
+    for i in range(len(sequences_lengths)):
+        idx_range[i] = i
     _, reverse_mapping = sorting_index.sort(0, descending=False)
     restoration_index = idx_range.index_select(0, reverse_mapping)
 

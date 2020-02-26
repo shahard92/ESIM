@@ -122,7 +122,10 @@ class ESIM(nn.Module):
         if self.dropout:
             embedded_premises = self._rnn_dropout(embedded_premises)
             embedded_hypotheses = self._rnn_dropout(embedded_hypotheses)
-
+            
+            
+        #print("Embedded premises:", embedded_premises)
+        
         encoded_premises = self._encoding(embedded_premises,
                                           premises_lengths)
         encoded_hypotheses = self._encoding(embedded_hypotheses,

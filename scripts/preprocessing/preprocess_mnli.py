@@ -83,7 +83,7 @@ def preprocess_MNLI_data(inputdir,
 
     print(20*"=", " Preprocessing train set ", 20*"=")
     print("\t* Reading data...")
-    data = preprocessor.read_data(os.path.join(inputdir, train_file))
+    data = preprocessor.read_data(os.path.join(inputdir, train_file), mode="train", snli=False)
 
     print("\t* Computing worddict and saving it...")
     preprocessor.build_worddict(data)
@@ -99,7 +99,7 @@ def preprocess_MNLI_data(inputdir,
     # -------------------- Validation data preprocessing -------------------- #
     print(20*"=", " Preprocessing dev sets ", 20*"=")
     print("\t* Reading matched dev data...")
-    data = preprocessor.read_data(os.path.join(inputdir, matched_dev_file))
+    data = preprocessor.read_data(os.path.join(inputdir, matched_dev_file), mode="dev", snli=False)
 
     print("\t* Transforming words in premises and hypotheses to indices...")
     transformed_data = preprocessor.transform_to_indices(data)
@@ -108,7 +108,7 @@ def preprocess_MNLI_data(inputdir,
         pickle.dump(transformed_data, pkl_file)
 
     print("\t* Reading mismatched dev data...")
-    data = preprocessor.read_data(os.path.join(inputdir, mismatched_dev_file))
+    data = preprocessor.read_data(os.path.join(inputdir, mismatched_dev_file), mode="dev", snli=False)
 
     print("\t* Transforming words in premises and hypotheses to indices...")
     transformed_data = preprocessor.transform_to_indices(data)
@@ -119,7 +119,7 @@ def preprocess_MNLI_data(inputdir,
     # -------------------- Test data preprocessing -------------------- #
     print(20*"=", " Preprocessing test sets ", 20*"=")
     print("\t* Reading matched test data...")
-    data = preprocessor.read_data(os.path.join(inputdir, matched_test_file))
+    data = preprocessor.read_data(os.path.join(inputdir, matched_test_file), mode="test", snli=False)
 
     print("\t* Transforming words in premises and hypotheses to indices...")
     transformed_data = preprocessor.transform_to_indices(data)
@@ -128,7 +128,7 @@ def preprocess_MNLI_data(inputdir,
         pickle.dump(transformed_data, pkl_file)
 
     print("\t* Reading mismatched test data...")
-    data = preprocessor.read_data(os.path.join(inputdir, mismatched_test_file))
+    data = preprocessor.read_data(os.path.join(inputdir, mismatched_test_file), mode="test", snli=False)
 
     print("\t* Transforming words in premises and hypotheses to indices...")
     transformed_data = preprocessor.transform_to_indices(data)

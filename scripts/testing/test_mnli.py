@@ -87,6 +87,10 @@ def main(test_files, pretrained_file, labeldict, output_dir, batch_size=32):
     embedding_dim = checkpoint['model']['_word_embedding.weight'].size(1)
     hidden_size = checkpoint['model']['_projection.0.weight'].size(0)
     num_classes = checkpoint['model']['_classification.4.weight'].size(0)
+    
+    print("vocab_size:", vocab_size)
+    print("embedding dim:", embedding_dim)
+    print("hidden size:", hidden_size)
 
     print("\t* Loading test data...")
     with open(os.path.normpath(test_files["matched"]), 'rb') as pkl:
@@ -140,7 +144,7 @@ if __name__ == "__main__":
                         help='Path to a configuration file')
     args = parser.parse_args()
 
-    with open(os.path.normpath(args.config), 'r') as config_file:
+    with open('../'+os.path.normpath(args.config), 'r') as config_file:
         config = json.load(config_file)
 
     main(config['test_files'],

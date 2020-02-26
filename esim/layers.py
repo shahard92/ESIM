@@ -30,6 +30,7 @@ class RNNDropout(nn.Dropout):
         Returns:
             A new tensor on which dropout has been applied.
         """
+        #print("sequences batch shape:", sequences_batch.shape)
         ones = sequences_batch.data.new_ones(sequences_batch.shape[0],
                                              sequences_batch.shape[-1])
         dropout_mask = nn.functional.dropout(ones, self.p, self.training,
